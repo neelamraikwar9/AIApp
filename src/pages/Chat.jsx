@@ -123,7 +123,7 @@ export default function Chat() {
         ) : (
           <div className="chat-window chat-window-empty">
             <p className="empty-mark">¶</p>
-            <p>Create your first entry to begin.</p>
+            <p>Create your first chat to begin.</p>
           </div>
         )}
       </main>

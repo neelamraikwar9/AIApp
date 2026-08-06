@@ -29,8 +29,10 @@ export default function Register() {
     <div className="auth-page">
       <div className="auth-card">
         <p className="eyebrow">Marginal</p>
-        <h1>Start writing</h1>
-        <p className="auth-sub">A notebook for practicing English with an AI companion.</p>
+        <h1>Welcome</h1>
+        <p className="auth-sub">
+          A space for open conversation with an AI companion.
+        </p>
 
         <form onSubmit={handleSubmit} className="auth-form">
           <label>

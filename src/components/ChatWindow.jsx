@@ -16,7 +16,7 @@ export default function ChatWindow({ messages, streamingIndex }) {
     return (
       <div className="chat-window chat-window-empty">
         <p className="empty-mark">¶</p>
-        <p>This entry is blank. Write the first line below.</p>
+        <p> No messages yet. Say hello to get started.</p>
       </div>
     );
   }

@@ -24,7 +24,7 @@ export default function InputBox({ onSend, disabled }) {
         value={text}
         onChange={(e) => setText(e.target.value)}
         onKeyDown={handleKeyDown}
-        placeholder="Type to ask..."
+        placeholder="Break the ice..."
         rows={1}
         disabled={disabled}
       />

@@ -7,16 +7,18 @@ export default function Sidebar({ conversations, activeId, onSelect, onNewChat }
     <aside className="sidebar">
       <div className="sidebar-top">
         <p className="eyebrow">Marginal</p>
-        <h2 className="sidebar-title">Entries</h2>
+        <h2 className="sidebar-title">Conversations</h2>
       </div>
 
       <button className="btn-new-entry" onClick={onNewChat}>
-        + New entry
+        + New chat
       </button>
 
       <nav className="entry-list">
         {conversations.length === 0 && (
-          <p className="entry-empty">No entries yet — start your first one above.</p>
+          <p className="entry-empty">
+            No chats yet — start your first one above.
+          </p>
         )}
         {conversations.map((c, i) => (
           <button
@@ -24,7 +26,9 @@ export default function Sidebar({ conversations, activeId, onSelect, onNewChat }
             className={`entry-item ${c._id === activeId ? "entry-item-active" : ""}`}
             onClick={() => onSelect(c._id)}
           >
-            <span className="entry-index">{String(i + 1).padStart(2, "0")}</span>
+            <span className="entry-index">
+              {String(i + 1).padStart(2, "0")}
+            </span>
             <span className="entry-name">{c.title || "Untitled entry"}</span>
           </button>
         ))}
@@ -32,7 +36,9 @@ export default function Sidebar({ conversations, activeId, onSelect, onNewChat }
 
       <div className="sidebar-bottom">
         <div className="user-chip">
-          <span className="user-initial">{user?.name?.[0]?.toUpperCase() || "?"}</span>
+          <span className="user-initial">
+            {user?.name?.[0]?.toUpperCase() || "?"}
+          </span>
           <span className="user-name">{user?.name}</span>
         </div>
         <button className="btn-signout" onClick={logout}>
