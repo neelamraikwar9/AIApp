@@ -1,4 +1,4 @@
-# Marginal — English AI Chat (Frontend)
+# Marginal — AI Chat 
 
 A React (Vite) frontend for your MERN AI chat app, styled as a writing journal.
 
@@ -53,10 +53,3 @@ creates the "typing" effect in `Chat.jsx`.
 Your backend is the only thing that talks to OpenRouter/Claude directly — the
 API key never touches the frontend.
 
-## Next steps you may want
-
-- Add a "rename conversation" or "delete conversation" button in the sidebar
-  (needs matching backend routes)
-- Handle expired/invalid tokens globally (e.g. redirect to `/login` on a 401
-  from axios) via an axios response interceptor
-- Add a loading skeleton while `loadConversations`/`loadMessages` run
