@@ -11,7 +11,7 @@ export default function Sidebar({ conversations, activeId, onSelect, onNewChat }
       </div>
 
       <button className="btn-new-entry" onClick={onNewChat}>
-        + New chat
+        + Create new chat
       </button>
 
       <nav className="entry-list">
