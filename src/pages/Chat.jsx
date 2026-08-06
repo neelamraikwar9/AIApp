@@ -11,6 +11,7 @@ export default function Chat() {
   const [messages, setMessages] = useState([]);
   const [streamingIndex, setStreamingIndex] = useState(null);
   const [sending, setSending] = useState(false);
+  const [sidebarOpen, setSidebarOpen] = useState(false);
 
   // Load the sidebar list once on mount
   useEffect(() => {
@@ -29,15 +30,25 @@ export default function Chat() {
   }
 
   async function loadMessages(conversationId) {
-    const { data } = await api.get(`/chat/conversations/${conversationId}/messages`);
+    const { data } = await api.get(
+      `/chat/conversations/${conversationId}/messages`,
+    );
     setMessages(data);
   }
 
   async function handleNewChat() {
-    const { data } = await api.post("/chat/conversations", { title: "New entry" });
+    const { data } = await api.post("/chat/conversations", {
+      title: "New entry",
+    });
     setConversations((prev) => [data, ...prev]);
     setActiveId(data._id);
     setMessages([]);
+    setSidebarOpen(false); // close drawer on mobile after creating a chat
+  }
+
+  function handleSelectConversation(id) {
+    setActiveId(id);
+    setSidebarOpen(false); // close drawer on mobile after picking a conversation
   }
 
   async function handleSend(text) {
@@ -58,7 +69,10 @@ export default function Chat() {
         setMessages((prev) => {
           const updated = [...prev];
           const last = updated.length - 1;
-          updated[last] = { ...updated[last], content: updated[last].content + chunk };
+          updated[last] = {
+            ...updated[last],
+            content: updated[last].content + chunk,
+          };
           return updated;
         });
       });
@@ -78,14 +92,29 @@ export default function Chat() {
   }
 
   return (
-    <div className="chat-layout">
+    <div className={`chat-layout ${sidebarOpen ? "sidebar-open" : ""}`}>
       <Sidebar
         conversations={conversations}
         activeId={activeId}
-        onSelect={setActiveId}
+        onSelect={handleSelectConversation}
         onNewChat={handleNewChat}
       />
+
+      {/* dims the screen and closes the drawer on tap, mobile only */}
+      <div className="sidebar-backdrop" onClick={() => setSidebarOpen(false)} />
+
       <main className="chat-main">
+        {/* hamburger only visible on mobile via CSS */}
+        <div className="mobile-topbar">
+          <button
+            className="btn-menu"
+            onClick={() => setSidebarOpen(true)}
+            aria-label="Open entries"
+          >
+            ☰
+          </button>
+        </div>
+
         {activeId ? (
           <>
             <ChatWindow messages={messages} streamingIndex={streamingIndex} />

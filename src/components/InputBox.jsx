@@ -24,7 +24,7 @@ export default function InputBox({ onSend, disabled }) {
         value={text}
         onChange={(e) => setText(e.target.value)}
         onKeyDown={handleKeyDown}
-        placeholder="Write your query press Enter to send"
+        placeholder="Type to ask..."
         rows={1}
         disabled={disabled}
       />

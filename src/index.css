@@ -476,18 +476,82 @@ input, textarea {
 @media (max-width: 720px) {
   .chat-layout {
     grid-template-columns: 1fr;
+    position: relative;
+    overflow: hidden;
   }
+
   .sidebar {
-    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 260px;
+    z-index: 100;
+    transform: translateX(-100%);
+    transition: transform 0.25s ease;
+    box-shadow: 20px 0 40px rgba(0, 0, 0, 0.35);
   }
+
+  .sidebar-open .sidebar {
+    transform: translateX(0);
+  }
+
+  .sidebar-backdrop {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.45);
+    z-index: 90;
+  }
+
+  .sidebar-open .sidebar-backdrop {
+    display: block;
+  }
+
+  .btn-menu {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    background: transparent;
+    border: 1px solid #e4dcc8;
+    border-radius: 3px;
+    color: #23282f;
+  }
+
   .chat-window {
     padding: 24px 20px;
   }
+
   .input-box {
     padding: 14px 20px 20px 20px;
   }
-  .message-row,
-  .message-row-user {
+
+  .input-box textarea {
+    font-size: 16px;
+    /* stops iOS auto-zoom on focus */
+  }
+
+  .message-row {
     grid-template-columns: 60px 1fr;
+    max-width: 100%;
+  }
+
+  .message-row-user {
+    grid-template-columns: 1fr 60px;
+    max-width: 100%;
+  }
+
+  .message-margin {
+    font-size: 0.62rem;
+  }
+}
+
+@media (min-width: 721px) {
+
+  .btn-menu,
+  .sidebar-backdrop {
+    display: none;
   }
 }
